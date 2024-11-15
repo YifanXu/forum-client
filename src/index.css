@@ -1,13 +1,113 @@
-body {
+/* Reset */
+body, h1, h2, h3, p, ul {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* General styling */
+body {
+  background-color: #f4f6f8;
+  color: #333;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Forum Page Styles */
+.forum-container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.thread-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.thread-item {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.thread-item:last-child {
+  border-bottom: none;
+}
+
+.thread-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.thread-meta {
+  font-size: 12px;
+  color: #888;
+}
+
+/* Thread Page Styles */
+.thread-content {
+  margin-top: 20px;
+}
+
+.reply-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.reply-item {
+  padding: 15px;
+  margin-top: 10px;
+  background: #f9f9f9;
+  border-radius: 5px;
+}
+
+.reply-meta {
+  font-size: 12px;
+  color: #555;
+}
+
+/* User Profile Page */
+.profile-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+}
+
+.stat {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
 }
