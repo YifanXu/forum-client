@@ -6,7 +6,7 @@ function ProfilePage() {
 				<p>Profile Page!!!!</p>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default ProfilePage;
+export default ProfilePage

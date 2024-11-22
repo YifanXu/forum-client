@@ -1,0 +1,23 @@
+.thread {
+	border: 1px solid gray;
+	margin-bottom: 1rem;
+}
+
+.thread:hover {
+	background-color: lightgray;
+}
+
+.threadAuthor {
+	float:left;
+	width: 30%;
+}
+
+.threadContent {
+	float:Right;
+	width: 70%;
+}
+
+.threadAuthorImg {
+	width: 50px;
+	height: 50px;
+}

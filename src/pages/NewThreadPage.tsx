@@ -6,7 +6,7 @@ function NewThreadPage() {
 				<p>Forum List Page!!!!</p>
 			</div>
 		</div>
-	);
+	)
 }
 
-export default NewThreadPage;
+export default NewThreadPage

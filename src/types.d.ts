@@ -3,22 +3,31 @@ export type AuthToken = {
 }
 
 export type Forum =  {
-	name: string
-	posts: string
-	latestPost?: Post
+	id: number,
+	name: string,
+	postCount: number,
+	lastUpdatedThread?: Thread,
+	icon: string
 }
 
 export type Thread = {
-	title: string
-	initialMessage: Post
+	parentForum?: Forum,
+	id: number,
+	title: string,
+	initialPost: Post,
+	replyCount: number
 }
 
 export type Post = {
-	author: string
+	id: number,
+	author: User,
+	time: number,
+	content: string
 }
 
 export type User = {
-	name: string
-	flair: string
+	id: number,
+	name: string,
+	flair: string,
 	pic: string
 }

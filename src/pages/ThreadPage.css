@@ -1,0 +1,25 @@
+.post {
+	border: 1px solid black;
+	margin-bottom: 1rem;
+}
+
+.postAuthor {
+	float:left;
+	width: 30%;
+}
+
+.postContent {
+	float:Right;
+	width: 70%;
+}
+
+.postAuthorImg {
+	width: 100px;
+	height: 100px;
+}
+
+.clearfix::after {
+	content: "";
+	clear: both;
+	display: table;
+}

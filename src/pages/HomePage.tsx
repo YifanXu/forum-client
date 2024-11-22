@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { ApiContext } from '../ApiContext';
+import { useContext } from 'react'
+import { ApiContext } from '../ApiContext'
 
 function HomePage() {
 	const api = useContext(ApiContext)
@@ -7,10 +7,10 @@ function HomePage() {
 	return (
 		<div className="HomePage">
 			<div>
-				<p>Home Page!!! Test={api.test}</p>
+				<p>Home Page!!! Test={api.test}</p>	
 			</div>
 		</div>
-	);
+	)
 }
 
-export default HomePage;
+export default HomePage
