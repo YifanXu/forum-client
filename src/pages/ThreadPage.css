@@ -1,16 +1,33 @@
 .post {
-	border: 1px solid black;
+	border-radius: 5px;
+	padding: 10px;
 	margin-bottom: 1rem;
+	background-color: var(--bs-light);
+	display: flex;
+	flex-direction: row;
+	align-items: start;
 }
 
 .postAuthor {
-	float:left;
-	width: 30%;
+	width: 10rem;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.postAuthor > .name {
+	font-size: large;
+	font-weight: bold;
+}
+
+.postAuthor > .flair {
+	color: darkgray;
 }
 
 .postContent {
-	float:Right;
-	width: 70%;
+	flex-grow: 1;
+	padding: 10px;
 }
 
 .postAuthorImg {
@@ -18,8 +35,8 @@
 	height: 100px;
 }
 
-.clearfix::after {
-	content: "";
-	clear: both;
-	display: table;
+.postTime {
+	font-size: small;
+	color: var(--bs-secondary);
+	margin-bottom: 0.5lh;
 }

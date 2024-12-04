@@ -8,3 +8,8 @@ export function pageFromSearchParams (searchParams: URLSearchParams): number {
     }
 	return current
 }
+
+const formatter = Intl.NumberFormat('en', { notation: 'compact' });
+export function displayNum (number: number): string {
+    return formatter.format(number);
+}

@@ -4,33 +4,33 @@ import { ApiContext } from '../ApiContext'
 import { Forum, Thread } from '../types'
 import Pager from '../components/Pager'
 import './ForumPage.css'
-import { pageFromSearchParams } from '../util/pageFromSearchParams'
+import { pageFromSearchParams } from '../utils'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 function ThreadBlock ({ thread }: { thread: Thread }) {
 	const initialPost = thread.initialPost
-	const author = initialPost.author
 	const navigate = useNavigate()
 	return (
 		<div className="thread clearfix" onClick={() => navigate(thread.id.toString())}>
-			<div className="threadAuthor">
-				<div>
-					<img src={author.pic} className='postAuthorImg' alt={`${author.name}'s profile pic`}/>
-				</div>
-				<div>{author.name}</div>
-				
-			</div>
 			<div className='threadContent'>
-				<div>Posted at {thread.initialPost.time}</div>
 				<h4>{thread.title}</h4>
+				<div>By {thread.initialPost.author.name}, at {new Date(thread.initialPost.time).toLocaleString()}</div>
+			</div>
+			<img className="authorPic" src={thread.lastPost.author.pic} alt=""></img>
+			<div className='replyCount'>
+			</div>
+			<div className='threadLastPost'>
+				<div className='name'>{thread.lastPost.author.name}</div>
+				<div className="time">{new Date(thread.lastPost.time).toLocaleString()}</div>
 			</div>
 		</div>
 	)
 }
 
 function ThreadPage() {
-	const {  forum } = useParams()
+	const { forum } = useParams()
 	const [searchParams, setSearchParams] = useSearchParams()
 	const api = useContext(ApiContext)
 
@@ -68,12 +68,16 @@ function ThreadPage() {
 				<Breadcrumb.Item linkAs={Link} linkProps={{to : '/forums'}}>Forums</Breadcrumb.Item>
 				<Breadcrumb.Item active>{currentForum.name}</Breadcrumb.Item>
 			</Breadcrumb>
-			<h1>{currentForum.name}</h1>
-			<hr/>
-			<p>Posts: {currentForum.postCount}</p>
-			<div className='threads'>
-				{currentThread ? currentThread.map(p => <ThreadBlock thread={p} key={p.id}/>) : <p>Loading Replies...</p>}
+			<div className='forumHeader'>
+				<h2>{currentForum.name}</h2>
+				<p>{currentForum.description}</p>
+				<hr/>
+				<p>Posts: {currentForum.threadCount}</p>
 			</div>
+			<ListGroup>
+				<ListGroup.Item active><Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/></ListGroup.Item>
+				{currentThread ? currentThread.map(p => <ListGroup.Item action key={p.id}><ThreadBlock thread={p}/></ListGroup.Item>) : <p>Loading Replies...</p>}
+			</ListGroup>
 			<Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/>
 		</div>
 	)

@@ -8,11 +8,12 @@ export default class ApiClient {
 	}
 
 	async register(username: string, password: string) {
-	
+		
 	}
 
 	async login(username: string, password: string): Promise<AuthToken> {
 		return {
+			username,
 			token: username + password
 		}
 	}
@@ -29,8 +30,9 @@ export default class ApiClient {
 		return [
 			{
 				id: 1,
-				postCount: 1,
+				threadCount: 10231,
 				name: 'All about cooking',
+				description: 'Cooking related content',
 				lastUpdatedThread: {
 					id: 15,
 					title: 'okok',
@@ -43,7 +45,18 @@ export default class ApiClient {
 							flair: "I'm cool",
 							"pic": "https://i.imgur.com/WTHmNqR.png"
 						},
-						time: 12,
+						time: 1733282608686,
+						content: "Test Title"
+					},
+					lastPost: {
+						id: 1,
+						author: {
+							id: 10,
+							name: "user1",
+							flair: "I'm cool",
+							"pic": "https://i.imgur.com/WTHmNqR.png"
+						},
+						time: 1733282608686,
 						content: "Test Title"
 					}
 				},
@@ -55,8 +68,9 @@ export default class ApiClient {
 	async getForum(forum: string): Promise<Forum> {
 		return {
 			id: 1,
-			postCount: 1,
+			threadCount: 1,
 			name: 'All about cooking',
+			description: 'Cooking related content',
 			lastUpdatedThread: {
 				id: 15,
 				title: 'okok',
@@ -70,6 +84,17 @@ export default class ApiClient {
 						"pic": "https://i.imgur.com/WTHmNqR.png"
 					},
 					time: 12,
+					content: "Test Title"
+				},
+				lastPost: {
+					id: 1,
+					author: {
+						id: 10,
+						name: "user1",
+						flair: "I'm cool",
+						"pic": "https://i.imgur.com/WTHmNqR.png"
+					},
+					time: 1733282608686,
 					content: "Test Title"
 				}
 			},
@@ -93,6 +118,17 @@ export default class ApiClient {
 					},
 					time: 12,
 					content: "Interested in cooking"
+				},
+				lastPost: {
+					id: 1,
+					author: {
+						id: 10,
+						name: "user1",
+						flair: "I'm cool",
+						"pic": "https://i.imgur.com/WTHmNqR.png"
+					},
+					time: 1733282608686,
+					content: "Test Title"
 				}
 			},
 			{
@@ -109,6 +145,17 @@ export default class ApiClient {
 					},
 					time: 12,
 					content: "I'm starving help"
+				},
+				lastPost: {
+					id: 1,
+					author: {
+						id: 10,
+						name: "user1",
+						flair: "I'm cool",
+						"pic": "https://i.imgur.com/WTHmNqR.png"
+					},
+					time: 1733282608686,
+					content: "Test Title"
 				}
 			}
 		]
@@ -132,8 +179,9 @@ export default class ApiClient {
 			},
 			parentForum: {
 				id: 1,
-				postCount: 1,
+				threadCount: 1,
 				name: 'All about cooking',
+				description: 'Cooking related content',
 				lastUpdatedThread: {
 					id: 15,
 					title: 'okok',
@@ -148,9 +196,31 @@ export default class ApiClient {
 						},
 						time: 12,
 						content: "Test Title"
+					},
+					lastPost: {
+						id: 1,
+						author: {
+							id: 10,
+							name: "user1",
+							flair: "I'm cool",
+							"pic": "https://i.imgur.com/WTHmNqR.png"
+						},
+						time: 1733282608686,
+						content: "Test Title"
 					}
 				},
 				icon: "https://i.imgur.com/WTHmNqR.png"
+			},
+			lastPost: {
+				id: 1,
+				author: {
+					id: 10,
+					name: "user1",
+					flair: "I'm cool",
+					"pic": "https://i.imgur.com/WTHmNqR.png"
+				},
+				time: 1733282608686,
+				content: "Test Title"
 			}
 		}
 	}

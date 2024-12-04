@@ -2,10 +2,11 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import "./MainNav.css"
 
 export default function MainNav() {
 	return (
-		<Navbar className="bg-body-tertiary dark">
+		<Navbar variant="dark" className="mainNav">
 			<Container>
 				<Navbar.Brand>Forum Client</Navbar.Brand>
 				<Navbar.Toggle />

@@ -1,20 +1,31 @@
+.forumHeader {
+	border-radius: 5px;
+	background-color: var(--bs-light);
+	padding: 20px;
+	min-height: 5lh;
+	margin-bottom: 2lh;
+}
+
 .thread {
-	border: 1px solid gray;
-	margin-bottom: 1rem;
+	display: flex;
+	flex-direction: row;
+	align-items: start;
 }
 
 .thread:hover {
 	background-color: lightgray;
 }
 
-.threadAuthor {
-	float:left;
-	width: 30%;
+.threadLastPost {
+	width: 10rem;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .threadContent {
-	float:Right;
-	width: 70%;
+	flex-grow: 1;
 }
 
 .threadAuthorImg {

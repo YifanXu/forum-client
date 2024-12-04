@@ -5,21 +5,23 @@ import { Post, Thread } from '../types'
 import Pager from '../components/Pager'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './ThreadPage.css'
-import { pageFromSearchParams } from '../util/pageFromSearchParams'
+import { pageFromSearchParams } from '../utils'
 import { Link } from 'react-router-dom'
 
 function PostBlock ({ post }: { post: Post }) {
 	return (
 		<div className="post clearfix">
 			<div className="postAuthor">
+				<div className='name'>{post.author.name}</div>
 				<div>
 					<img src={post.author.pic} className='postAuthorImg' alt={`${post.author.name}'s profile pic`}/>
 				</div>
-				<div>{post.author.name}</div>
-				<div>{post.author.flair}</div>
-				<div>Posted at {post.time}</div>
+				<div className='flair'>{post.author.flair}</div>
 			</div>
-			<div className='postContent'>{post.content.split('\n').map((section, i) => <p key={i}>{section}</p>)}</div>
+			<div className='postContent'>
+				<div className='postTime'>Posted at {new Date(post.time).toLocaleString()}</div>
+				<div>{post.content.split('\n').map((section, i) => <p key={i}>{section}</p>)}</div>
+			</div>
 		</div>
 	)
 }

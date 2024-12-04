@@ -1,11 +1,13 @@
 export type AuthToken = {
+	username: string,
 	token: string
 }
 
 export type Forum =  {
 	id: number,
 	name: string,
-	postCount: number,
+	description: string,
+	threadCount: number,
 	lastUpdatedThread?: Thread,
 	icon: string
 }
@@ -15,7 +17,8 @@ export type Thread = {
 	id: number,
 	title: string,
 	initialPost: Post,
-	replyCount: number
+	lastPost: Post,
+	replyCount: number,
 }
 
 export type Post = {
