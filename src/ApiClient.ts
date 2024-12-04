@@ -1,27 +1,38 @@
-import { AuthToken, Forum, Post, Thread } from "./types"
+import { AuthToken, Forum, Post, Thread, User } from "./types"
 
 export default class ApiClient {
 	public test: number
+	public session: AuthToken | null
 
 	constructor(test: number = 5) {
 		this.test = test
+		this.session = null
 	}
 
+	// auth
 	async register(username: string, password: string) {
-		
+		// api call
 	}
 
 	async login(username: string, password: string): Promise<AuthToken> {
-		return {
-			username,
-			token: username + password
+		return this.session = {
+			user: {
+				id: 10,
+				name: "user1",
+				flair: "I'm cool",
+				pic: "https://i.imgur.com/WTHmNqR.png"
+			},
+			token: username + password,
+			expireAt: 0
 		}
 	}
 	
 	async logout() {
-
+		this.session = null
 	}
 
+
+	// getters
 	async getFeed(page: number = 0): Promise<Post[]> {
 		return []
 	}
@@ -251,4 +262,20 @@ export default class ApiClient {
 			}
 		]
 	}
+
+	async getUser(id: number): Promise<User> {
+		return {
+			id: 10,
+			name: "user1",
+			flair: "I'm cool",
+			pic: "https://i.imgur.com/WTHmNqR.png"
+		}
+	}
+
+	async getUserPosts(id: number): Promise<Post[]> {
+		return []
+	}
+
+	// mutators
+	
 }

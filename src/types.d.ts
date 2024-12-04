@@ -1,6 +1,7 @@
 export type AuthToken = {
-	username: string,
-	token: string
+	user: User,
+	token: string,
+	expireAt: number,
 }
 
 export type Forum =  {

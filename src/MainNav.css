@@ -1,3 +1,14 @@
 .mainNav {
 	background-color: var(--bs-primary);
 }
+
+.activeProfilePic {
+	width: 1.5lh;
+	height: 1.5lh;
+	margin-right: 10px;
+}
+
+.navCollapse {
+	--bs-nav-link-color: var(--bs-navbar-color);
+	--bs-nav-link-hover-color: var(--bs-navbar-hover-color);
+}

@@ -87,8 +87,8 @@ function ThreadPage() {
 				<ListGroup.Item active><Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/></ListGroup.Item>
 				{
 					threads 
-						? threads.map(p => <ListGroup.Item action key={p.id}><ThreadBlock thread={p}/></ListGroup.Item>) 
-						: <ListGroup.Item key="placeholder"><ThreadBlockPlaceholder/></ListGroup.Item>
+						? threads.map(p => <ListGroup.Item action key={p.id} className="threadEntry"><ThreadBlock thread={p}/></ListGroup.Item>) 
+						: <ListGroup.Item action key="placeholder"><ThreadBlockPlaceholder/></ListGroup.Item>
 					}
 				<ListGroup.Item active className={threads ? "" : "hide"}><Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/></ListGroup.Item>
 			</ListGroup>

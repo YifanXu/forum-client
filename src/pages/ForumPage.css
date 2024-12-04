@@ -12,6 +12,10 @@
 	align-items: center;
 }
 
+.threadEntry {
+	background-color: var(--bs-light);
+}
+
 .thread {
 	display: flex;
 	flex-direction: row;
@@ -25,9 +29,9 @@
 	height: 200px;
 }
 
-.thread:not(.threadPlaceholder):hover {
+/* .thread:not(.threadPlaceholder):hover {
 	background-color: lightgray;
-}
+} */
 
 .threadLastPost {
 	width: 10rem;
