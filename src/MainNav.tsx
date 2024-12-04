@@ -67,7 +67,7 @@ export default function MainNav() {
 						</Nav>
 					</Navbar.Collapse>
 					<Navbar.Collapse className="justify-content-end navCollapse">
-						{ session ? <img src={session.user.pic} className='activeProfilePic'/> : 1 }
+						{ session ? <img src={session.user.profilePic} className='activeProfilePic'/> : 1 }
 						<NavDropdown title={session ? session.user.name : "Not Logged In"} align='end'>
 							{
 								session ? [

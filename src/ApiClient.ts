@@ -20,7 +20,7 @@ export default class ApiClient {
 				id: 10,
 				name: "user1",
 				flair: "I'm cool",
-				pic: "https://i.imgur.com/WTHmNqR.png"
+				profilePic: "https://i.imgur.com/WTHmNqR.png"
 			},
 			token: username + password,
 			expireAt: 0
@@ -33,6 +33,8 @@ export default class ApiClient {
 	//#endregion auth
 
 	//#region getters
+
+	// feel free to cache the stats in memory in backend or something
 	async getForumStats(): Promise<ForumStats> {
 		return {
 			totalUsers: 5,
@@ -53,7 +55,7 @@ export default class ApiClient {
 		return []
 	}
 
-	// get all forums
+	// get all forums on the site
 	async getForums(): Promise<Forum[]> {
 		return [
 			{
@@ -71,7 +73,7 @@ export default class ApiClient {
 							id: 10,
 							name: "user1",
 							flair: "I'm cool",
-							"pic": "https://i.imgur.com/WTHmNqR.png"
+							profilePic: "https://i.imgur.com/WTHmNqR.png"
 						},
 						time: 1733282608686,
 						content: "Comon "
@@ -82,7 +84,7 @@ export default class ApiClient {
 							id: 10,
 							name: "user1",
 							flair: "I'm cool",
-							"pic": "https://i.imgur.com/WTHmNqR.png"
+							profilePic: "https://i.imgur.com/WTHmNqR.png"
 						},
 						time: 1733282608686,
 						content: "Test Title"
@@ -110,7 +112,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						"pic": "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "https://i.imgur.com/WTHmNqR.png"
 					},
 					time: 12,
 					content: "Test Title"
@@ -121,7 +123,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						"pic": "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "https://i.imgur.com/WTHmNqR.png"
 					},
 					time: 1733282608686,
 					content: "Test Title"
@@ -144,7 +146,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						"pic": "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "https://i.imgur.com/WTHmNqR.png"
 					},
 					time: 12,
 					content: "Interested in cooking"
@@ -155,7 +157,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						"pic": "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "https://i.imgur.com/WTHmNqR.png"
 					},
 					time: 1733282608686,
 					content: "Test Title"
@@ -171,7 +173,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						"pic": "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "https://i.imgur.com/WTHmNqR.png"
 					},
 					time: 12,
 					content: "I'm starving help"
@@ -182,7 +184,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						"pic": "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "https://i.imgur.com/WTHmNqR.png"
 					},
 					time: 1733282608686,
 					content: "Test Title"
@@ -205,7 +207,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					pic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
 				},
 				time: 12,
 				content: "Test Title"
@@ -216,7 +218,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					"pic": "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
 				},
 				time: 1733282608686,
 				content: "Test Title"
@@ -233,7 +235,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					"pic": "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
 				},
 				time: 12,
 				content: "Test Title"
@@ -244,7 +246,7 @@ export default class ApiClient {
 					id: 12,
 					name: "user2",
 					flair: "I'm cool",
-					"pic": "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
 				},
 				time: 12,
 				content: "Test\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\n"
@@ -258,7 +260,10 @@ export default class ApiClient {
 			id: 10,
 			name: "user1",
 			flair: "I'm cool",
-			pic: "https://i.imgur.com/WTHmNqR.png"
+			profilePic: "https://i.imgur.com/WTHmNqR.png",
+			registered: 15,
+			threadCount: 2,
+			postCount: 17
 		}
 	}
 
@@ -276,7 +281,7 @@ export default class ApiClient {
 			id: 10,
 			name: "user1",
 			flair: "I'm cool",
-			pic: "https://i.imgur.com/WTHmNqR.png"
+			profilePic: "https://i.imgur.com/WTHmNqR.png"
 		}
 	}
 
@@ -292,7 +297,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					pic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
 				},
 				time: 12,
 				content: "Test Title"
@@ -305,7 +310,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					"pic": "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
 				},
 				time: 1733282608686,
 				content: "Test Title"
@@ -321,7 +326,7 @@ export default class ApiClient {
 				id: 10,
 				name: "user1",
 				flair: "I'm cool",
-				"pic": "https://i.imgur.com/WTHmNqR.png"
+				profilePic: "https://i.imgur.com/WTHmNqR.png"
 			},
 			time: 12,
 			content: "Test Title"

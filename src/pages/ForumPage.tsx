@@ -19,7 +19,7 @@ function ThreadBlock ({ thread }: { thread: Thread }) {
 				<h4>{thread.title}</h4>
 				<div>By {thread.initialPost.author.name}, at {new Date(thread.initialPost.time).toLocaleString()}</div>
 			</div>
-			<img className="authorPic" src={thread.lastPost.author.pic} alt=""></img>
+			<img className="authorPic" src={thread.lastPost.author.profilePic} alt=""></img>
 			<div className='replyCount'>
 			</div>
 			<div className='threadLastPost'>

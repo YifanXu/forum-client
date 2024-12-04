@@ -50,5 +50,10 @@ export type User = {
 	id: number,
 	name: string,
 	flair: string,
-	pic: string
+	profilePic: string,
+
+	// Only include when getting user by id (getuser)
+	registered?: number,
+	threadCount?: number,
+	postCount?: number
 }

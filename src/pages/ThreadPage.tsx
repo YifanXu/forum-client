@@ -15,7 +15,7 @@ function PostBlock ({ post }: { post: Post }) {
 			<div className="postAuthor">
 				<div className='name'>{post.author.name}</div>
 				<div>
-					<img src={post.author.pic} className='postAuthorImg' alt={`${post.author.name}'s profile pic`}/>
+					<img src={post.author.profilePic} className='postAuthorImg' alt={`${post.author.name}'s profile pic`}/>
 				</div>
 				<div className='flair'>{post.author.flair}</div>
 			</div>

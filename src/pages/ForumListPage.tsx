@@ -13,7 +13,7 @@ function LastThreadThumbnail({ thread }: {thread: Thread | undefined}) {
 		return <div className='forumLastThread'>No threads posted</div>
 	}
 	return <div className='forumLastThread'>
-		<img className="authorPic" src={thread.initialPost.author.pic} alt=""></img>
+		<img className="authorPic" src={thread.initialPost.author.profilePic} alt=""></img>
 		<div>
 			<div>
 				<span className='title'>{thread.title}</span>
