@@ -51,7 +51,7 @@ const router = createBrowserRouter([{
 					element: <NewThreadPage/>
 				},
 				{
-					path: "profile/:username",
+					path: "users/:userid/:username",
 					element: <ProfilePage />
 				}
 			]

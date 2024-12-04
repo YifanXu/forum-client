@@ -1,0 +1,59 @@
+.profileHeader {
+	background-color: var(--bs-light);
+	height: 300px;
+	position: relative;
+	margin-bottom: 1lh;
+}
+
+.profilePicBig {
+	background-color: azure;
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+}
+
+.headerBand {
+	height: 4rem;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 0.5lh 0px 0.5lh 220px;
+	background-color: var(--bs-primary);
+	color: var(--bs-light);
+
+	& > * {
+		padding: 0px 1rem;
+		& > .statHeader {
+			color: var(--primary-fade);
+			font-weight: bold;
+		}
+	}
+
+	& > *:not(:last-child) {
+		border-right: 1px solid var(--primary-fade);
+	}
+}
+
+.profileName {
+	position: absolute;
+	color: var(--bs-white);
+	left: 200px;
+	bottom: 4rem;
+	margin-bottom: 1rem;
+	padding: 5px;
+	background-color: var(--bs-secondary);
+}
+/* 
+.profieMain {
+	margin: 0px;
+} */
+
+.profileSideColumn > * {
+	margin-bottom: 1lh;
+}

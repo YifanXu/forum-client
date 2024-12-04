@@ -67,10 +67,11 @@ export default function MainNav() {
 						</Nav>
 					</Navbar.Collapse>
 					<Navbar.Collapse className="justify-content-end navCollapse">
-						{ session ? <img src={session.user.profilePic} className='activeProfilePic'/> : 1 }
+						{ session ? <img src={session.user.profilePic} className='activeProfilePic' alt=""/> : 1 }
 						<NavDropdown title={session ? session.user.name : "Not Logged In"} align='end'>
 							{
 								session ? [
+									<NavDropdown.Item as={Link} to={`/users/${session.user.id}/${session.user.name}`} key='profLink'>My Profile</NavDropdown.Item>,
 									<NavDropdown.Item onClick={() => apiClient.logout()} key='signout'>Sign out</NavDropdown.Item>
 								] : [
 									<NavDropdown.Item onClick={() => openModal(true)} key='register'>Register</NavDropdown.Item>,

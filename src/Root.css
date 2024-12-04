@@ -2,6 +2,7 @@
 	max-width: 1060px;
 	margin: 0px auto;
 	padding: 20px 30px;
+	--primary-fade: rgb(242, 230, 250, 0.8);
 }
 
 .hide {

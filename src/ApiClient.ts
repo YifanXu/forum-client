@@ -269,7 +269,36 @@ export default class ApiClient {
 
 	// get all users posts across threads and forums, ordered descending by time
 	async getUserPosts(userId: string): Promise<Post[]> {
-		return []
+		return [
+			{
+				id: 1,
+				author: {
+					id: 10,
+					name: "user1",
+					flair: "I'm cool",
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
+				},
+				time: 12,
+				content: "Test Title",
+				parentThreadForum: 'All about Cooking',
+				parentThreadId: 5,
+				parentThreadTitle: 'Interested in Cooking'
+			},
+			{
+				id: 14,
+				author: {
+					id: 12,
+					name: "user2",
+					flair: "I'm cool",
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
+				},
+				time: 12,
+				content: "Test\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\n",
+				parentThreadForum: 'All about Cooking',
+				parentThreadId: 5,
+				parentThreadTitle: 'Interested in Cooking'
+			}
+		]
 	}
 
 	//#endregion getters
