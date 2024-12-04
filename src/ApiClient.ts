@@ -1,4 +1,4 @@
-import { AuthToken, Forum, Post, Thread, User } from "./types"
+import { AuthToken, Forum, ForumStats, Post, Thread, User } from "./types"
 
 export default class ApiClient {
 	public test: number
@@ -9,7 +9,7 @@ export default class ApiClient {
 		this.session = null
 	}
 
-	// auth
+	// #region auth
 	async register(username: string, password: string) {
 		// api call
 	}
@@ -30,14 +30,31 @@ export default class ApiClient {
 	async logout() {
 		this.session = null
 	}
+	//#endregion auth
 
+	//#region getters
+	async getForumStats(): Promise<ForumStats> {
+		return {
+			totalUsers: 5,
+			totalThreads: 10,
+			totalPosts: 20,
+			latestThreads: []
+		}
+	}
 
-	// getters
-	async getFeed(page: number = 0): Promise<Post[]> {
+	// get new threads on subscribed forums
+	async getThreadFeed(page: number = 0): Promise<Thread[]> {
 		return []
 	}
 
-	async getForums(page: number = 9): Promise<Forum[]> {
+	// get new posts on subscribed threads
+	// posts must be after subscription, descending by time
+	async getPostFeed(page: number = 0): Promise<Post[]> {
+		return []
+	}
+
+	// get all forums
+	async getForums(): Promise<Forum[]> {
 		return [
 			{
 				id: 1,
@@ -46,8 +63,8 @@ export default class ApiClient {
 				description: 'Cooking related content',
 				lastUpdatedThread: {
 					id: 15,
-					title: 'okok',
-					replyCount: 2,
+					title: 'Interested in cooking',
+					postCount: 2,
 					initialPost: {
 						id: 1,
 						author: {
@@ -57,7 +74,7 @@ export default class ApiClient {
 							"pic": "https://i.imgur.com/WTHmNqR.png"
 						},
 						time: 1733282608686,
-						content: "Test Title"
+						content: "Comon "
 					},
 					lastPost: {
 						id: 1,
@@ -76,7 +93,8 @@ export default class ApiClient {
 		]
 	}
 
-	async getForum(forum: string): Promise<Forum> {
+	// get information on forum by forumId
+	async getForum(forumId: string): Promise<Forum> {
 		return {
 			id: 1,
 			threadCount: 1,
@@ -84,8 +102,8 @@ export default class ApiClient {
 			description: 'Cooking related content',
 			lastUpdatedThread: {
 				id: 15,
-				title: 'okok',
-				replyCount: 2,
+				title: 'Interested in cooking',
+				postCount: 2,
 				initialPost: {
 					id: 1,
 					author: {
@@ -113,12 +131,13 @@ export default class ApiClient {
 		}
 	}
 
-	async getThreads(forum: string, page: number = 0): Promise<Thread[]> {
+	// get threads in a forum
+	async getThreads(forumId: string, page: number = 0): Promise<Thread[]> {
 		return [
 			{
 				id: 15,
 				title: 'Interested in cooking',
-				replyCount: 2,
+				postCount: 2,
 				initialPost: {
 					id: 1,
 					author: {
@@ -145,7 +164,7 @@ export default class ApiClient {
 			{
 				id: 17,
 				title: 'Anyone got good receipes',
-				replyCount: 2,
+				postCount: 2,
 				initialPost: {
 					id: 1,
 					author: {
@@ -172,11 +191,14 @@ export default class ApiClient {
 		]
 	}
 
-	async getThread(forum: string, thread: string): Promise<Thread> {
+	// get specific thread by threadId
+	async getThread(forumId: string, threadId: string): Promise<Thread> {
 		return {
 			id: 15,
-			title: 'okok',
-			replyCount: 2,
+			title: 'Interested in cooking',
+			parentForumId: 1,
+			parentForumName: 'All about Cooking',
+			postCount: 2,
 			initialPost: {
 				id: 1,
 				author: {
@@ -187,40 +209,6 @@ export default class ApiClient {
 				},
 				time: 12,
 				content: "Test Title"
-			},
-			parentForum: {
-				id: 1,
-				threadCount: 1,
-				name: 'All about cooking',
-				description: 'Cooking related content',
-				lastUpdatedThread: {
-					id: 15,
-					title: 'okok',
-					replyCount: 2,
-					initialPost: {
-						id: 1,
-						author: {
-							id: 10,
-							name: "user1",
-							flair: "I'm cool",
-							"pic": "https://i.imgur.com/WTHmNqR.png"
-						},
-						time: 12,
-						content: "Test Title"
-					},
-					lastPost: {
-						id: 1,
-						author: {
-							id: 10,
-							name: "user1",
-							flair: "I'm cool",
-							"pic": "https://i.imgur.com/WTHmNqR.png"
-						},
-						time: 1733282608686,
-						content: "Test Title"
-					}
-				},
-				icon: "https://i.imgur.com/WTHmNqR.png"
 			},
 			lastPost: {
 				id: 1,
@@ -236,7 +224,8 @@ export default class ApiClient {
 		}
 	}
 
-	async getReplies(forum: string, thread: string, page: number): Promise<Post[]> {
+	// get posts in a thread. Include the initial and last post
+	async getPosts(forumId: string, threadId: string, page: number): Promise<Post[]> {
 		return [
 			{
 				id: 1,
@@ -263,7 +252,8 @@ export default class ApiClient {
 		]
 	}
 
-	async getUser(id: number): Promise<User> {
+	// get user by user id
+	async getUser(userId: string): Promise<User> {
 		return {
 			id: 10,
 			name: "user1",
@@ -272,10 +262,81 @@ export default class ApiClient {
 		}
 	}
 
-	async getUserPosts(id: number): Promise<Post[]> {
+	// get all users posts across threads and forums, ordered descending by time
+	async getUserPosts(userId: string): Promise<Post[]> {
 		return []
 	}
 
-	// mutators
-	
+	//#endregion getters
+
+	// #region mutators
+	// update the current user with new attributes
+	async updateUser(user: User): Promise<User> {
+		return {
+			id: 10,
+			name: "user1",
+			flair: "I'm cool",
+			pic: "https://i.imgur.com/WTHmNqR.png"
+		}
+	}
+
+	// create a new thread in a specified forum
+	async createThread(forumId: number, title: string, content: string): Promise<Thread> {
+		return {
+			id: 15,
+			title: 'Interested in cooking',
+			postCount: 2,
+			initialPost: {
+				id: 1,
+				author: {
+					id: 10,
+					name: "user1",
+					flair: "I'm cool",
+					pic: "https://i.imgur.com/WTHmNqR.png"
+				},
+				time: 12,
+				content: "Test Title"
+			},
+			parentForumId: 1,
+			parentForumName: 'All about Cooking',
+			lastPost: {
+				id: 1,
+				author: {
+					id: 10,
+					name: "user1",
+					flair: "I'm cool",
+					"pic": "https://i.imgur.com/WTHmNqR.png"
+				},
+				time: 1733282608686,
+				content: "Test Title"
+			}
+		}
+	}
+
+	// add a reply to a specific thread
+	async replyToThread(threadId: number, content: string): Promise<Post> {
+		return {
+			id: 1,
+			author: {
+				id: 10,
+				name: "user1",
+				flair: "I'm cool",
+				"pic": "https://i.imgur.com/WTHmNqR.png"
+			},
+			time: 12,
+			content: "Test Title"
+		}
+	}
+
+	// Set whether the active user is subscribed to a specific forum
+	async setForumSubscription(forumId: string, subscribed: boolean): Promise<void> {
+
+	}
+
+	// Set whether the active user is subscribed to a specific thread
+	async setThreadSubscription(threadId: string, subscribed: boolean): Promise<void> {
+
+	}
+
+	//#endregion mutators
 }

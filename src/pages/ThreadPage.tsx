@@ -48,7 +48,7 @@ function ThreadPage() {
 
 	useEffect(() => {
 		if (forum && thread) {
-			api.getReplies(forum, thread, page).then(res => setCurrentReplies(res))
+			api.getPosts(forum, thread, page).then(res => setCurrentReplies(res))
 		}
 		else {
 			setCurrentThread(undefined)
@@ -64,13 +64,13 @@ function ThreadPage() {
 			<Breadcrumb>
 				<Breadcrumb.Item linkAs={Link} linkProps={{to : '/'}}>Home</Breadcrumb.Item>
 				<Breadcrumb.Item linkAs={Link} linkProps={{to : '/forums'}}>Forums</Breadcrumb.Item>
-				<Breadcrumb.Item linkAs={Link} linkProps={{to: `/forums/${currentThread?.parentForum?.id ?? ''}`}}>{currentThread.parentForum?.name ?? forum}</Breadcrumb.Item>
+				<Breadcrumb.Item linkAs={Link} linkProps={{to: `/forums/${currentThread?.parentForumId ?? ''}`}}>{currentThread.parentForumName ?? forum}</Breadcrumb.Item>
 				<Breadcrumb.Item active>{currentThread.title}</Breadcrumb.Item>
 			</Breadcrumb>
 			<h1>{currentThread.title}</h1>
 			<PostBlock post={currentThread.initialPost}/>
 			<hr/>
-			<p>Replies: {currentThread.replyCount}</p>
+			<p>Replies: {currentThread.postCount}</p>
 			<ListGroup>
 				<ListGroup.Item active>
 					<Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/>
