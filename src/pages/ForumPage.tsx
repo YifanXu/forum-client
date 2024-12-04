@@ -8,12 +8,13 @@ import { pageFromSearchParams } from '../utils'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
+import { Spinner } from 'react-bootstrap'
 
 function ThreadBlock ({ thread }: { thread: Thread }) {
 	const initialPost = thread.initialPost
 	const navigate = useNavigate()
 	return (
-		<div className="thread clearfix" onClick={() => navigate(thread.id.toString())}>
+		<div className="thread" onClick={() => navigate(thread.id.toString())}>
 			<div className='threadContent'>
 				<h4>{thread.title}</h4>
 				<div>By {thread.initialPost.author.name}, at {new Date(thread.initialPost.time).toLocaleString()}</div>
@@ -29,56 +30,68 @@ function ThreadBlock ({ thread }: { thread: Thread }) {
 	)
 }
 
+function ThreadBlockPlaceholder() {
+	return (
+		<div className='thread threadPlaceholder'>
+			<Spinner variant='primary'/>
+		</div>
+	)
+}
+
 function ThreadPage() {
 	const { forum } = useParams()
 	const [searchParams, setSearchParams] = useSearchParams()
 	const api = useContext(ApiContext)
 
-	const [currentForum, setCurrentThread] = useState<Forum | undefined>(undefined)
-	const [currentThread, setCurrentReplies] = useState<Thread[] | undefined>(undefined)
+	const [currentForum, setCurrentForum] = useState<Forum | undefined>(undefined)
+	const [threads, setThreads] = useState<Thread[] | undefined>(undefined)
 
 	const page = pageFromSearchParams(searchParams)
 
 	useEffect(() => {
 		if (forum) {
-			api.getForum(forum).then(res => setCurrentThread(res))
+			api.getForum(forum).then(res => setCurrentForum(res))
 		}
 		else {
-			setCurrentThread(undefined)
+			setCurrentForum(undefined)
 		}
 	}, [api, forum])
 
 	useEffect(() => {
 		if (forum) {
-			api.getThreads(forum, page).then(res => setCurrentReplies(res))
+			api.getThreads(forum, page).then(res => setThreads(res))
 		}
 		else {
-			setCurrentThread(undefined)
+			setCurrentForum(undefined)
 		}
 	}, [api, forum, page])
-
-	if (!currentForum) {
-		return <div className="ThreadPage">Loading</div>
-	}
 
 	return (
 		<div className="ForumPage">
 			<Breadcrumb>
 				<Breadcrumb.Item linkAs={Link} linkProps={{to : '/'}}>Home</Breadcrumb.Item>
 				<Breadcrumb.Item linkAs={Link} linkProps={{to : '/forums'}}>Forums</Breadcrumb.Item>
-				<Breadcrumb.Item active>{currentForum.name}</Breadcrumb.Item>
+				<Breadcrumb.Item active>{currentForum?.name ?? ''}</Breadcrumb.Item>
 			</Breadcrumb>
-			<div className='forumHeader'>
-				<h2>{currentForum.name}</h2>
-				<p>{currentForum.description}</p>
-				<hr/>
-				<p>Posts: {currentForum.threadCount}</p>
-			</div>
+			{
+				currentForum
+				? <div className='forumHeader'>
+					<h2>{currentForum.name}</h2>
+					<p>{currentForum.description}</p>
+					<hr/>
+					<p>Posts: {currentForum.threadCount}</p>
+				</div>
+				: <div className='forumHeader forumHeaderPlaceholder'><Spinner variant='primary'/></div>
+			}
 			<ListGroup>
 				<ListGroup.Item active><Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/></ListGroup.Item>
-				{currentThread ? currentThread.map(p => <ListGroup.Item action key={p.id}><ThreadBlock thread={p}/></ListGroup.Item>) : <p>Loading Replies...</p>}
+				{
+					threads 
+						? threads.map(p => <ListGroup.Item action key={p.id}><ThreadBlock thread={p}/></ListGroup.Item>) 
+						: <ListGroup.Item key="placeholder"><ThreadBlockPlaceholder/></ListGroup.Item>
+					}
+				<ListGroup.Item active className={threads ? "" : "hide"}><Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/></ListGroup.Item>
 			</ListGroup>
-			<Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/>
 		</div>
 	)
 }

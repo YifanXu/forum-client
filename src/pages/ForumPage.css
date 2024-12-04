@@ -6,13 +6,26 @@
 	margin-bottom: 2lh;
 }
 
+.forumHeaderPlaceholder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .thread {
 	display: flex;
 	flex-direction: row;
 	align-items: start;
 }
 
-.thread:hover {
+.threadPlaceholder
+{
+	align-items: center;
+	justify-content: center;
+	height: 200px;
+}
+
+.thread:not(.threadPlaceholder):hover {
 	background-color: lightgray;
 }
 

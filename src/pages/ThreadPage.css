@@ -1,7 +1,7 @@
 .post {
 	border-radius: 5px;
 	padding: 10px;
-	margin-bottom: 1rem;
+	margin: 0.5rem 0px;
 	background-color: var(--bs-light);
 	display: flex;
 	flex-direction: row;
@@ -39,4 +39,8 @@
 	font-size: small;
 	color: var(--bs-secondary);
 	margin-bottom: 0.5lh;
+}
+
+.pagerWrapper {
+	background-color: var(--bs-primary);
 }

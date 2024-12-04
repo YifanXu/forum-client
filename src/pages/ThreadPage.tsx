@@ -7,6 +7,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './ThreadPage.css'
 import { pageFromSearchParams } from '../utils'
 import { Link } from 'react-router-dom'
+import ListGroup from 'react-bootstrap/ListGroup'
 
 function PostBlock ({ post }: { post: Post }) {
 	return (
@@ -70,10 +71,19 @@ function ThreadPage() {
 			<PostBlock post={currentThread.initialPost}/>
 			<hr/>
 			<p>Replies: {currentThread.replyCount}</p>
+			<ListGroup>
+				<ListGroup.Item active>
+					<Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/>
+				</ListGroup.Item>
+			</ListGroup>
 			<div className='replies'>
 				{currentReplies ? currentReplies.map(p => <PostBlock post={p} key={p.id}/>) : <p>Loading Replies...</p>}
 			</div>
-			<Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/>
+			<ListGroup>
+				<ListGroup.Item active>
+					<Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/>
+				</ListGroup.Item>
+			</ListGroup>
 		</div>
 	)
 }
