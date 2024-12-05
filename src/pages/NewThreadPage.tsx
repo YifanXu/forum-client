@@ -19,8 +19,8 @@ function NewThreadPage() {
 	const setError = useContext(ErrorContext)
 
 	useEffect(() => {
-		api.getForums().then(f => {setForums(f); setTargetForum(f[0]?.name ?? '');})
-	}, [])
+		api.getForums().then(f => {setForums(f); setTargetForum(f[0]?.name ?? '');}).catch(handleApiError(setError))
+	}, [api, setError])
 
 	const handleSubmit = async (e: any) => {
 		console.log('submit')

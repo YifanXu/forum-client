@@ -50,7 +50,7 @@ function ProfilePage() {
 			api.getUser(userid).then(user => setUser(user)).catch(handleApiError(setError))
 			api.getUserPosts(userid).then(res => setPosts(res)).catch(handleApiError(setError))
 		}
-	}, [api, userid])
+	}, [api, userid, setError])
 
 	const handleFormSubmit = useCallback(async () => {
 		const newUser: User = {
@@ -66,7 +66,7 @@ function ProfilePage() {
 		catch (e) {
 			handleApiError(setError)(e)
 		}
-	}, [api, user, editText])
+	}, [api, user, editText, setError])
 
 	const handleProfileUpload = useCallback(async (publicId: string) => {
 		const newUser: User = {
@@ -75,7 +75,7 @@ function ProfilePage() {
 		}
 		setUser(newUser)
 		await api.updateUser(newUser).catch(handleApiError(setError))
-	}, [api, user])
+	}, [api, user, setError])
 
 	return (
 		<div className="ProfilePage">

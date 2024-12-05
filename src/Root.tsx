@@ -19,7 +19,7 @@ export default function Root() {
 					<ErrorContext.Provider value={setError}>
 						<MainNav />
 						<div className='page'>
-							<Alert variant="danger" onClose={() => setError('')} dismissible>{error}</Alert>
+							{error ? <Alert variant="danger" onClose={() => setError('')} dismissible>{error}</Alert> : null }
 							<Outlet />
 						</div>
 					</ErrorContext.Provider>

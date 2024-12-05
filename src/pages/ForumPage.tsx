@@ -56,7 +56,7 @@ function ThreadPage() {
 		else {
 			setCurrentForum(undefined)
 		}
-	}, [api, forum])
+	}, [api, forum, setError])
 
 	useEffect(() => {
 		if (forum) {
@@ -65,7 +65,7 @@ function ThreadPage() {
 		else {
 			setCurrentForum(undefined)
 		}
-	}, [api, forum, page])
+	}, [api, forum, page, setError])
 
 	return (
 		<div className="ForumPage">

@@ -63,7 +63,7 @@ function HomePage() {
 		api.getForumStats().then(s => setForumStats(s)).catch(handleApiError(setError))
 		api.getThreadFeed(1).then(s => setThreads(s)).catch(handleApiError(setError))
 		api.getPostFeed(1).then(s => setPosts(s)).catch(handleApiError(setError))
-	}, [api])
+	}, [api, setError])
 
 	return (
 		<>

@@ -50,7 +50,7 @@ function ForumListPage() {
 
 	useEffect(() => {
 		api.getForums().then(res => setForumList(res)).catch(handleApiError(setError))
-	}, [api])
+	}, [api, setError])
 
 
 	if (!forumList) {

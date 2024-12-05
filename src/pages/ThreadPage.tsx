@@ -47,7 +47,7 @@ function ThreadPage() {
 		else {
 			setCurrentThread(undefined)
 		}
-	}, [api, forum, thread])
+	}, [api, forum, thread, setError])
 
 	useEffect(() => {
 		if (forum && thread) {
@@ -56,7 +56,7 @@ function ThreadPage() {
 		else {
 			setCurrentThread(undefined)
 		}
-	}, [api, forum, thread, page])
+	}, [api, forum, thread, page, setError])
 
 	if (!currentThread) {
 		return <div className="ThreadPage">Loading</div>
