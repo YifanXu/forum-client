@@ -3,6 +3,7 @@
 	height: 300px;
 	position: relative;
 	margin-bottom: 1lh;
+	border-radius: 5px;
 }
 
 .profilePicBig {
@@ -12,6 +13,7 @@
 	position: absolute;
 	bottom: 30px;
 	left: 30px;
+	border-radius: 5px;
 }
 
 .headerBand {
@@ -26,6 +28,8 @@
 	padding: 0.5lh 0px 0.5lh 220px;
 	background-color: var(--bs-primary);
 	color: var(--bs-light);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 
 	& > * {
 		padding: 0px 1rem;
@@ -48,12 +52,12 @@
 	margin-bottom: 1rem;
 	padding: 5px;
 	background-color: var(--bs-secondary);
+	border-radius: 5px;
 }
-/* 
-.profieMain {
-	margin: 0px;
-} */
 
-.profileSideColumn > * {
-	margin-bottom: 1lh;
+.profieMain > .col {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1lh;
 }

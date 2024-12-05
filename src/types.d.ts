@@ -39,6 +39,7 @@ export type Post = {
 	parentThreadId?: number,
 	parentThreadTitle?: string,
 	parentThreadForum?: string,
+	parentThreadForumId?: number
 
 	id: number,
 	author: User,

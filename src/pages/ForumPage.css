@@ -1,3 +1,7 @@
+.ForumPage {
+	--bs-body-bg: var(--bs-light);
+}
+
 .forumHeader {
 	border-radius: 5px;
 	background-color: var(--bs-light);
@@ -19,7 +23,7 @@
 .thread {
 	display: flex;
 	flex-direction: row;
-	align-items: start;
+	align-items: center;
 }
 
 .threadPlaceholder
@@ -29,16 +33,28 @@
 	height: 200px;
 }
 
-/* .thread:not(.threadPlaceholder):hover {
-	background-color: lightgray;
-} */
+.threadTitle {
+	margin: 0px;
+}
+
+.threadThumbnail {
+	color: gray;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+}
+
+.threadAttribution {
+	font-size: small;
+	color: gray;
+	margin-bottom: 0.5lh;
+}
 
 .threadLastPost {
-	width: 10rem;
+	width: 12rem;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 }
 
 .threadContent {

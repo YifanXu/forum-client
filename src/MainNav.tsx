@@ -63,11 +63,11 @@ export default function MainNav() {
 					<Navbar.Collapse id="basic-navbar-nav">
 						<Nav className="me-auto">
 							<Nav.Link as={Link} to="/forums">Forums</Nav.Link>
-							<Nav.Link as={Link} to="/forums">New Post</Nav.Link>
+							<Nav.Link as={Link} to="/newthread">New Post</Nav.Link>
 						</Nav>
 					</Navbar.Collapse>
 					<Navbar.Collapse className="justify-content-end navCollapse">
-						{ session ? <img src={session.user.profilePic} className='activeProfilePic' alt=""/> : 1 }
+						{ session ? <img src={session.user.profilePic} className='activeProfilePic' alt=""/> : null }
 						<NavDropdown title={session ? session.user.name : "Not Logged In"} align='end'>
 							{
 								session ? [

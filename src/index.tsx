@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import 'bootstrap/dist/css/bootstrap.min.css'
-import './custom.scss'
 import reportWebVitals from './reportWebVitals'
 import {
 	createBrowserRouter,
@@ -19,6 +17,10 @@ import ForumPage from './pages/ForumPage'
 import ThreadPage from './pages/ThreadPage'
 import ProfilePage from './pages/ProfilePage'
 import NewThreadPage from './pages/NewThreadPage'
+
+import './custom.scss'
+import 'react-quill/dist/quill.core.css';
+import 'react-quill/dist/quill.snow.css';
 
 const apiClient = new ApiClient(10)
 

@@ -1,3 +1,7 @@
+.App {
+	font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
 .page {
 	max-width: 1060px;
 	margin: 0px auto;
@@ -7,4 +11,9 @@
 
 .hide {
 	display:none;
+}
+
+.ql-container {
+    font-size: inherit !important;
+	font-family: inherit !important;
 }

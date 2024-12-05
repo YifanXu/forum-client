@@ -16,12 +16,11 @@ function ThreadBlock ({ thread }: { thread: Thread }) {
 	return (
 		<div className="thread" onClick={() => navigate(thread.id.toString())}>
 			<div className='threadContent'>
-				<h4>{thread.title}</h4>
-				<div>By {thread.initialPost.author.name}, at {new Date(thread.initialPost.time).toLocaleString()}</div>
+				<h4 className='threadTitle'>{thread.title}</h4>
+				<div className='threadAttribution'>By {thread.initialPost.author.name}, at {new Date(thread.initialPost.time).toLocaleString()}</div>
+				<div className='threadThumbnail'>{thread.initialPost.content}</div>
 			</div>
 			<img className="authorPic" src={thread.lastPost.author.profilePic} alt=""></img>
-			<div className='replyCount'>
-			</div>
 			<div className='threadLastPost'>
 				<div className='name'>{thread.lastPost.author.name}</div>
 				<div className="time">{new Date(thread.lastPost.time).toLocaleString()}</div>

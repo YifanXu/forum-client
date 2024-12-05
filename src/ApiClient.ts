@@ -40,7 +40,37 @@ export default class ApiClient {
 			totalUsers: 5,
 			totalThreads: 10,
 			totalPosts: 20,
-			latestThreads: []
+			latestThreads: [
+				{
+					id: 15,
+					title: 'Interested in cooking a really big turkey for you and all my families',
+					parentForumId: 1,
+					parentForumName: 'All about Cooking',
+					postCount: 2,
+					initialPost: {
+						id: 1,
+						author: {
+							id: 10,
+							name: "user1",
+							flair: "I'm cool",
+							profilePic: "https://i.imgur.com/WTHmNqR.png"
+						},
+						time: 12,
+						content: "Test Title"
+					},
+					lastPost: {
+						id: 1,
+						author: {
+							id: 10,
+							name: "user1",
+							flair: "I'm cool",
+							profilePic: "https://i.imgur.com/WTHmNqR.png"
+						},
+						time: 1733282608686,
+						content: "Test Title"
+					}
+				}
+			]
 		}
 	}
 
@@ -52,7 +82,23 @@ export default class ApiClient {
 	// get new posts on subscribed threads
 	// posts must be after subscription, descending by time
 	async getPostFeed(page: number = 0): Promise<Post[]> {
-		return []
+		return [
+			{
+				id: 1,
+				author: {
+					id: 10,
+					name: "user1",
+					flair: "I'm cool",
+					profilePic: "https://i.imgur.com/WTHmNqR.png"
+				},
+				time: 1733282608686,
+				content: "Test Title",
+				parentThreadForumId: 1,
+				parentThreadForum: 'All about cooking',
+				parentThreadId: 1,
+				parentThreadTitle: 'Cooking'
+			}
+		]
 	}
 
 	// get all forums on the site
