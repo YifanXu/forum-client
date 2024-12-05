@@ -9,11 +9,6 @@
 	gap: 1lh;
 }
 
-.threadAuthorPic {
-	height: 2lh;
-	width: 2lh;
-}
-
 .threadBlock {
 	display: flex;
 	flex-direction: row;
@@ -48,7 +43,7 @@
 	flex-direction: row;
 }
 
-.postBlock > img {
+.postBlock > div > img {
 	margin-right: 10px;
 }
 

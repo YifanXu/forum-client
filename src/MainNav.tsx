@@ -9,12 +9,11 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Alert from 'react-bootstrap/Alert'
 import "./MainNav.css"
 import { Link } from 'react-router-dom'
-import { useState, useContext, useCallback, useEffect } from 'react'
-import { ApiContext } from './ApiContext'
-import { AuthToken } from './types'
+import { useState, useContext, useCallback } from 'react'
+import { ApiContext, SessionContext } from './ApiContext'
+import ProfilePic from './components/ProfilePic'
 
 export default function MainNav() {
-	const [session, setSession] = useState<AuthToken | null>(null)
 	const [loginModalOepn, setLoginModalOpen] = useState(false)
 	const [isRegistering, setIsRegistering] = useState(false)
 	const [username, setUsername] = useState('')
@@ -22,10 +21,7 @@ export default function MainNav() {
 	const [loginErrorMsg, setLoginErrorMsg] = useState('')
 
 	const apiClient = useContext(ApiContext)
-
-	useEffect(() => {
-		setSession(apiClient.session)
-	}, [apiClient.session])
+	const session = useContext(SessionContext)
 
 	const handleSend = async () => {
 		try {
@@ -67,8 +63,8 @@ export default function MainNav() {
 						</Nav>
 					</Navbar.Collapse>
 					<Navbar.Collapse className="justify-content-end navCollapse">
-						{ session ? <img src={session.user.profilePic} className='activeProfilePic' alt=""/> : null }
-						<NavDropdown title={session ? session.user.name : "Not Logged In"} align='end'>
+						{ session ? <ProfilePic src={session.user.profilePic} size="1.5lh"/> : null }
+						<NavDropdown title={session ? session.user.name : "Not Logged In"} align='end' className='navdrop'>
 							{
 								session ? [
 									<NavDropdown.Item as={Link} to={`/users/${session.user.id}/${session.user.name}`} key='profLink'>My Profile</NavDropdown.Item>,

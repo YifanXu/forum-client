@@ -1,0 +1,12 @@
+.editButton {
+	width: 1lh;
+	height: 1lh;
+	padding: 0;
+	background-color: transparent;
+	border: none;
+}
+
+.editButton > img {
+	width: 100%;
+	height: 100%;
+}

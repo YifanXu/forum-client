@@ -6,10 +6,7 @@
 	border-radius: 5px;
 }
 
-.profilePicBig {
-	background-color: azure;
-	width: 150px;
-	height: 150px;
+.profileHeader > div > img {
 	position: absolute;
 	bottom: 30px;
 	left: 30px;
@@ -25,7 +22,7 @@
 	flex-direction: row;
 	flex-wrap: nowrap;
 	align-items: center;
-	padding: 0.5lh 0px 0.5lh 220px;
+	padding: 0.5lh 0px 0.5lh 200px;
 	background-color: var(--bs-primary);
 	color: var(--bs-light);
 	border-bottom-left-radius: 5px;
@@ -47,7 +44,7 @@
 .profileName {
 	position: absolute;
 	color: var(--bs-white);
-	left: 200px;
+	left: 216px;
 	bottom: 4rem;
 	margin-bottom: 1rem;
 	padding: 5px;
@@ -60,4 +57,12 @@
 	flex-direction: column;
 	align-items: stretch;
 	gap: 1lh;
+}
+
+.flairDiv {
+	display: flex;
+
+	& > div:first-child {
+		flex-grow: 1;
+	}
 }

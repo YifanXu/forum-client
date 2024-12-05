@@ -10,9 +10,9 @@ import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { Spinner } from 'react-bootstrap'
 import RichTextDisplay from '../components/RichTextDisplay'
+import ProfilePic from '../components/ProfilePic'
 
 function ThreadBlock ({ thread }: { thread: Thread }) {
-	const initialPost = thread.initialPost
 	const navigate = useNavigate()
 	return (
 		<div className="thread" onClick={() => navigate(thread.id.toString())}>
@@ -21,7 +21,7 @@ function ThreadBlock ({ thread }: { thread: Thread }) {
 				<div className='threadAttribution'>By {thread.initialPost.author.name}, at {new Date(thread.initialPost.time).toLocaleString()}</div>
 			<RichTextDisplay className='threadThumbnail' content={thread.initialPost.content} limitLine/>
 			</div>
-			<img className="authorPic" src={thread.lastPost.author.profilePic} alt=""></img>
+			<ProfilePic src={thread.lastPost.author.profilePic} size={50}/>
 			<div className='threadLastPost'>
 				<div className='name'>{thread.lastPost.author.name}</div>
 				<div className="time">{new Date(thread.lastPost.time).toLocaleString()}</div>

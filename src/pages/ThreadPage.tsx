@@ -9,6 +9,7 @@ import { pageFromSearchParams } from '../utils'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import RichTextDisplay from '../components/RichTextDisplay'
+import ProfilePic from '../components/ProfilePic'
 
 function PostBlock ({ post }: { post: Post }) {
 	return (
@@ -16,7 +17,7 @@ function PostBlock ({ post }: { post: Post }) {
 			<div className="postAuthor">
 				<div className='name'>{post.author.name}</div>
 				<div>
-					<img src={post.author.profilePic} className='postAuthorImg' alt={`${post.author.name}'s profile pic`}/>
+					<ProfilePic src={post.author.profilePic} size={100}/>
 				</div>
 				<div className='flair'>{post.author.flair}</div>
 			</div>

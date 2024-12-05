@@ -7,13 +7,14 @@ import { ApiContext } from '../ApiContext'
 import "./ForumListPage.css"
 import ListGroup from 'react-bootstrap/ListGroup'
 import { displayNum } from '../utils'
+import ProfilePic from '../components/ProfilePic'
 
 function LastThreadThumbnail({ thread }: {thread: Thread | undefined}) {
 	if (!thread) {
 		return <div className='forumLastThread'>No threads posted</div>
 	}
 	return <div className='forumLastThread'>
-		<img className="authorPic" src={thread.initialPost.author.profilePic} alt=""></img>
+		<ProfilePic src={thread.initialPost.author.profilePic} size={50}/>
 		<div>
 			<div>
 				<span className='title'>{thread.title}</span>

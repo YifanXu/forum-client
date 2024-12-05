@@ -26,7 +26,7 @@ export default function PaginationHelper({ current, max, setPage }: { current: n
         else if (target > max) target = max
 
         setPage(target)
-    }, [pageInput])
+    }, [pageInput, max, setPage])
 
     if (!max) {
         return <div className='pagerRoot'/>

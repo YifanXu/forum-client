@@ -1,12 +1,15 @@
 import { AuthToken, Forum, ForumStats, Post, Thread, User } from "./types"
+import { Cloudinary } from '@cloudinary/url-gen';
 
 export default class ApiClient {
-	public test: number
-	public session: AuthToken | null
+	private session: () => AuthToken | null
+	private setSession: (session: AuthToken|null) => void
+	public cloudinary: Cloudinary
 
-	constructor(test: number = 5) {
-		this.test = test
-		this.session = null
+	constructor(session: () => AuthToken | null, setSession: (session: AuthToken|null) => void) {
+		this.session = session
+		this.setSession = setSession
+		this.cloudinary = new Cloudinary({ cloud: { cloudName: 'dztsw0f2i' } });
 	}
 
 	// #region auth
@@ -15,20 +18,22 @@ export default class ApiClient {
 	}
 
 	async login(username: string, password: string): Promise<AuthToken> {
-		return this.session = {
+		const s = {
 			user: {
 				id: 10,
 				name: "user1",
 				flair: "I'm cool",
-				profilePic: "https://i.imgur.com/WTHmNqR.png"
+				profilePic: "vaqwtjn5wytcresydksu"
 			},
 			token: username + password,
 			expireAt: 0
 		}
+		this.setSession(s)
+		return s
 	}
 	
 	async logout() {
-		this.session = null
+		this.setSession(null)
 	}
 	//#endregion auth
 
@@ -53,7 +58,7 @@ export default class ApiClient {
 							id: 10,
 							name: "user1",
 							flair: "I'm cool",
-							profilePic: "https://i.imgur.com/WTHmNqR.png"
+							profilePic: "vaqwtjn5wytcresydksu"
 						},
 						time: 12,
 						content: "Test Title"
@@ -64,7 +69,7 @@ export default class ApiClient {
 							id: 10,
 							name: "user1",
 							flair: "I'm cool",
-							profilePic: "https://i.imgur.com/WTHmNqR.png"
+							profilePic: "vaqwtjn5wytcresydksu"
 						},
 						time: 1733282608686,
 						content: "Test Title"
@@ -89,7 +94,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 1733282608686,
 				content: "Test Title",
@@ -119,7 +124,7 @@ export default class ApiClient {
 							id: 10,
 							name: "user1",
 							flair: "I'm cool",
-							profilePic: "https://i.imgur.com/WTHmNqR.png"
+							profilePic: "vaqwtjn5wytcresydksu"
 						},
 						time: 1733282608686,
 						content: "Comon "
@@ -130,13 +135,13 @@ export default class ApiClient {
 							id: 10,
 							name: "user1",
 							flair: "I'm cool",
-							profilePic: "https://i.imgur.com/WTHmNqR.png"
+							profilePic: "vaqwtjn5wytcresydksu"
 						},
 						time: 1733282608686,
 						content: "Test Title"
 					}
 				},
-				icon: "https://i.imgur.com/WTHmNqR.png"
+				icon: "vaqwtjn5wytcresydksu"
 			}
 		]
 	}
@@ -158,7 +163,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						profilePic: "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "vaqwtjn5wytcresydksu"
 					},
 					time: 12,
 					content: "Test Title"
@@ -169,13 +174,13 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						profilePic: "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "vaqwtjn5wytcresydksu"
 					},
 					time: 1733282608686,
 					content: "Test Title"
 				}
 			},
-			icon: "https://i.imgur.com/WTHmNqR.png"
+			icon: "vaqwtjn5wytcresydksu"
 		}
 	}
 
@@ -192,7 +197,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						profilePic: "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "vaqwtjn5wytcresydksu"
 					},
 					time: 12,
 					content: "Interested in cooking. I am actually so interested i am going to write a really long blob of garbage to test your website layout."
@@ -203,7 +208,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						profilePic: "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "vaqwtjn5wytcresydksu"
 					},
 					time: 1733282608686,
 					content: "Test Title"
@@ -219,7 +224,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						profilePic: "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "vaqwtjn5wytcresydksu"
 					},
 					time: 12,
 					content: "<p>2njnfakwjfnakjnwf</p><p>njkfawkfnajkwn</p>"
@@ -230,7 +235,7 @@ export default class ApiClient {
 						id: 10,
 						name: "user1",
 						flair: "I'm cool",
-						profilePic: "https://i.imgur.com/WTHmNqR.png"
+						profilePic: "vaqwtjn5wytcresydksu"
 					},
 					time: 1733282608686,
 					content: "Test Title"
@@ -253,7 +258,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 12,
 				content: "Test Title"
@@ -264,7 +269,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 1733282608686,
 				content: "Test Title"
@@ -281,7 +286,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 12,
 				content: "Test Title"
@@ -292,7 +297,7 @@ export default class ApiClient {
 					id: 12,
 					name: "user2",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 12,
 				content: "Test\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\n"
@@ -306,7 +311,7 @@ export default class ApiClient {
 			id: 10,
 			name: "user1",
 			flair: "I'm cool",
-			profilePic: "https://i.imgur.com/WTHmNqR.png",
+			profilePic: "vaqwtjn5wytcresydksu",
 			registered: 15,
 			threadCount: 2,
 			postCount: 17
@@ -322,7 +327,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 12,
 				content: "Test Title",
@@ -336,7 +341,7 @@ export default class ApiClient {
 					id: 12,
 					name: "user2",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 12,
 				content: "Test\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\nTest\n",
@@ -356,7 +361,7 @@ export default class ApiClient {
 			id: 10,
 			name: "user1",
 			flair: "I'm cool",
-			profilePic: "https://i.imgur.com/WTHmNqR.png"
+			profilePic: "vaqwtjn5wytcresydksu"
 		}
 	}
 
@@ -372,7 +377,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 12,
 				content: "Test Title"
@@ -385,7 +390,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "https://i.imgur.com/WTHmNqR.png"
+					profilePic: "vaqwtjn5wytcresydksu"
 				},
 				time: 1733282608686,
 				content: "Test Title"
@@ -401,7 +406,7 @@ export default class ApiClient {
 				id: 10,
 				name: "user1",
 				flair: "I'm cool",
-				profilePic: "https://i.imgur.com/WTHmNqR.png"
+				profilePic: "vaqwtjn5wytcresydksu"
 			},
 			time: 12,
 			content: "Test Title"

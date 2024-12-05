@@ -10,14 +10,13 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { ForumStats, Thread, Post } from '../types'
 import './HomePage.css'
 import ProfilePic from '../components/ProfilePic'
-import ReactQuill from 'react-quill'
 import RichTextDisplay from '../components/RichTextDisplay'
 
 function ThreadBlock ({ thread }: { thread: Thread }) {
 	const navigate = useNavigate()
 	return <ListGroup.Item action onClick={() => navigate(`forums/${thread.parentForumId}/${thread.id}`)}>
 		<div className='threadBlock'>
-		<img className='threadAuthorPic' src={thread.initialPost.author.profilePic} alt=""/>
+		<ProfilePic src={thread.initialPost.author.profilePic} size="2lh"/>
 		<div className='threadBlockMain'>
 			<div className='threadForum'>{thread.parentForumName}</div>
 			<div className='threadTitle'>{thread.title}</div>

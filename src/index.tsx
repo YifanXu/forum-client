@@ -6,7 +6,8 @@ import {
 	RouterProvider,
 } from "react-router-dom"
 import ApiClient from './ApiClient'
-import { ApiContext } from './ApiContext'
+import { ApiContext, SessionContext } from './ApiContext'
+import { AuthToken } from './types'
 
 // Import pages here
 import Root from './Root'
@@ -19,14 +20,18 @@ import ProfilePage from './pages/ProfilePage'
 import NewThreadPage from './pages/NewThreadPage'
 
 import './custom.scss'
-import 'react-quill/dist/quill.core.css';
 import 'react-quill/dist/quill.snow.css';
 
-const apiClient = new ApiClient(10)
+let session: AuthToken | null = null 
+const apiClient = new ApiClient(() => session, s => {session = s})
 
 const router = createBrowserRouter([{
 	path: "/",
-	element: <ApiContext.Provider value={apiClient}><Root /></ApiContext.Provider>,
+	element: <ApiContext.Provider value={apiClient}>
+		<SessionContext.Provider value={session}>
+			<Root />
+		</SessionContext.Provider>
+	</ApiContext.Provider>,
 	errorElement: <ErrorPage />,
 	children: [
 		{

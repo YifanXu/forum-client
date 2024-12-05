@@ -30,11 +30,6 @@
 	padding: 10px;
 }
 
-.postAuthorImg {
-	width: 100px;
-	height: 100px;
-}
-
 .postTime {
 	font-size: small;
 	color: var(--bs-secondary);
