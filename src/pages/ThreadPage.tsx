@@ -8,6 +8,7 @@ import './ThreadPage.css'
 import { pageFromSearchParams } from '../utils'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
+import RichTextDisplay from '../components/RichTextDisplay'
 
 function PostBlock ({ post }: { post: Post }) {
 	return (
@@ -21,7 +22,7 @@ function PostBlock ({ post }: { post: Post }) {
 			</div>
 			<div className='postContent'>
 				<div className='postTime'>Posted at {new Date(post.time).toLocaleString()}</div>
-				<div>{post.content.split('\n').map((section, i) => <p key={i}>{section}</p>)}</div>
+				<RichTextDisplay content={post.content}/>
 			</div>
 		</div>
 	)

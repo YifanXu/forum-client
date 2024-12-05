@@ -26,6 +26,11 @@
 	align-items: center;
 }
 
+.threadContent {
+	flex: 1;
+	min-width: 0;
+}
+
 .threadPlaceholder
 {
 	align-items: center;
@@ -39,6 +44,7 @@
 
 .threadThumbnail {
 	color: gray;
+	overflow: hidden;
 	text-wrap: nowrap;
 	text-overflow: ellipsis;
 }
@@ -51,17 +57,16 @@
 
 .threadLastPost {
 	width: 12rem;
+	min-width: 12rem;
 	padding: 10px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-}
-
-.threadContent {
-	flex-grow: 1;
+	flex: 0 1 auto;
 }
 
 .threadAuthorImg {
 	width: 50px;
 	height: 50px;
+	flex: 0 1 auto;
 }

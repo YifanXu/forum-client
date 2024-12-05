@@ -10,6 +10,8 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { ForumStats, Thread, Post } from '../types'
 import './HomePage.css'
 import ProfilePic from '../components/ProfilePic'
+import ReactQuill from 'react-quill'
+import RichTextDisplay from '../components/RichTextDisplay'
 
 function ThreadBlock ({ thread }: { thread: Thread }) {
 	const navigate = useNavigate()
@@ -36,7 +38,7 @@ function PostBlock({ post }: { post: Post}) {
 					<Link to={`/forums/${post.parentThreadForumId}/${post.parentThreadId}`} className='postBlockThread'>
 						{post.parentThreadTitle}
 					</Link>
-					<div>{post.content}</div>
+					<RichTextDisplay content={post.content}/>
 				</div>
 			</div>
 		</ListGroup.Item>
