@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'react'
 import Pagination from 'react-bootstrap/Pagination'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -10,6 +11,22 @@ function PageItem ({page, handler}: {page: number, handler: (page: number) => vo
 }
 
 export default function PaginationHelper({ current, max, setPage }: { current: number, max?: number, setPage: (page: number) => void }) {
+    const [pageInput, setPageInput] = useState('')
+
+    const handleSubmit = useCallback((e: any) => {
+        e.preventDefault()
+        let target = parseInt(pageInput)
+        setPageInput('')
+        if (isNaN(target) || !max) {
+            return
+        }
+
+        target = Math.floor(target)
+        if (target < 1) target = 1
+        else if (target > max) target = max
+
+        setPage(target)
+    }, [pageInput])
 
     if (!max) {
         return <div className='pagerRoot'/>
@@ -28,13 +45,13 @@ export default function PaginationHelper({ current, max, setPage }: { current: n
                 {current < max - 1 ? <Pagination.Last onClick={() => setPage(max)} key="last"/> : null}
             </Pagination>
             <div>Page {current} of {max}</div>
-            <Form className='paginationForm'>
+            <Form className='paginationForm' onSubmit={handleSubmit}>
                 <Row>
                     <Col sm={9} className='col'>
-                        <Form.Control placeholder="page" type="number"/>
+                        <Form.Control placeholder="page" type="number" value={pageInput} onChange={e => setPageInput(e.target.value)}/>
                     </Col>
                     <Col sm={3} className='col'>
-                        <Button variant='outline-light'>Go</Button>
+                        <Button variant='outline-light' type='submit'>Go</Button>
                     </Col>
                 </Row>
             </Form>
