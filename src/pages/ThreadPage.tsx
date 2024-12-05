@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import RichTextDisplay from '../components/RichTextDisplay'
 import ProfilePic from '../components/ProfilePic'
+import Button from 'react-bootstrap/Button'
 
 function PostBlock ({ post }: { post: Post }) {
 	return (
@@ -58,6 +59,14 @@ function ThreadPage() {
 		}
 	}, [api, forum, thread, page, setError])
 
+	const handleSubscribe = () => {
+		if (currentThread) {
+			api.setThreadSubscription(currentThread.id.toString(), true)
+			.then(() => {})
+			.catch(handleApiError(setError))
+		}
+	}
+
 	if (!currentThread) {
 		return <div className="ThreadPage">Loading</div>
 	}
@@ -73,14 +82,17 @@ function ThreadPage() {
 			<h1>{currentThread.title}</h1>
 			<PostBlock post={currentThread.initialPost}/>
 			<hr/>
-			<p>Replies: {currentThread.postCount}</p>
+			<div className='subtitleLine'>
+				<div>Replies: {currentThread.postCount - 1}</div>
+				<Button variant='primary' disabled={!currentThread} onClick={handleSubscribe}>Subscribe to this thread</Button>
+			</div>
 			<ListGroup>
 				<ListGroup.Item active>
 					<Pager current={page} max={11} setPage={page => setSearchParams(params => ({...params, page}))}/>
 				</ListGroup.Item>
 			</ListGroup>
 			<div className='replies'>
-				{currentReplies ? currentReplies.map(p => <PostBlock post={p} key={p.id}/>) : <p>Loading Replies...</p>}
+				{currentReplies ? currentReplies.map(p => p.id == currentThread.initialPost.id ? null : <PostBlock post={p} key={p.id}/>) : <p>Loading Replies...</p>}
 			</div>
 			<ListGroup>
 				<ListGroup.Item active>

@@ -8,6 +8,7 @@ import { handleApiError, pageFromSearchParams } from '../utils'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
+import Button from 'react-bootstrap/Button'
 import { Spinner } from 'react-bootstrap'
 import RichTextDisplay from '../components/RichTextDisplay'
 import ProfilePic from '../components/ProfilePic'
@@ -67,6 +68,14 @@ function ThreadPage() {
 		}
 	}, [api, forum, page, setError])
 
+	const handleSubscribe = () => {
+		if (currentForum) {
+			api.setForumSubscription(currentForum.id.toString(), true)
+			.then(() => {})
+			.catch(handleApiError(setError))
+		}
+	}
+
 	return (
 		<div className="ForumPage">
 			<Breadcrumb>
@@ -80,7 +89,10 @@ function ThreadPage() {
 					<h2>{currentForum.name}</h2>
 					<p>{currentForum.description}</p>
 					<hr/>
-					<p>Posts: {currentForum.threadCount}</p>
+					<div className='forumSubtitle'>
+						<div>Threads in this forum: {currentForum.threadCount}</div>
+						<Button variant='primary' disabled={!currentForum} onClick={handleSubscribe}>Subscribe</Button>
+					</div>
 				</div>
 				: <div className='forumHeader forumHeaderPlaceholder'><Spinner variant='primary'/></div>
 			}

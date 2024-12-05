@@ -10,6 +10,15 @@
 	margin-bottom: 2lh;
 }
 
+.forumSubtitle {
+	display: flex;
+	align-items: center;
+
+	& > div:first-child {
+		flex-grow: 1;
+	}
+}
+
 .forumHeaderPlaceholder {
 	display: flex;
 	justify-content: center;
