@@ -3,10 +3,10 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { Forum, Thread } from '../types'
-import { ApiContext } from '../ApiContext'
+import { ApiContext, ErrorContext } from '../ApiContext'
 import "./ForumListPage.css"
 import ListGroup from 'react-bootstrap/ListGroup'
-import { displayNum } from '../utils'
+import { displayNum, handleApiError } from '../utils'
 import ProfilePic from '../components/ProfilePic'
 
 function LastThreadThumbnail({ thread }: {thread: Thread | undefined}) {
@@ -29,7 +29,7 @@ function ForumBlock ({ forum }: { forum: Forum }) {
 	const navigate = useNavigate()
 	return (
 		<div className="forumBlock clearfix" onClick={() => navigate(forum.id.toString())}>
-			<img src={forum.icon} className='forumThumbnail' alt={`${forum.name}'s icon`}/>
+			<ProfilePic src={forum.icon} size={70} borderRadius='50%'/>
 			<div className='forumMain'>
 				<div className="forumTitle">{forum.name}</div>
 				<div className="forumDesc">{forum.description}</div>
@@ -45,10 +45,11 @@ function ForumBlock ({ forum }: { forum: Forum }) {
 
 function ForumListPage() {
 	const api = useContext(ApiContext)
+	const setError = useContext(ErrorContext)
 	const [forumList, setForumList] = useState<Forum[] | undefined>(undefined)
 
 	useEffect(() => {
-		api.getForums().then(res => setForumList(res))
+		api.getForums().then(res => setForumList(res)).catch(handleApiError(setError))
 	}, [api])
 
 

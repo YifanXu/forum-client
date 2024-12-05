@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
-import { ApiContext } from '../ApiContext'
+import { ApiContext, ErrorContext } from '../ApiContext'
 import { useNavigate, Link } from 'react-router-dom'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -11,6 +11,7 @@ import { ForumStats, Thread, Post } from '../types'
 import './HomePage.css'
 import ProfilePic from '../components/ProfilePic'
 import RichTextDisplay from '../components/RichTextDisplay'
+import { handleApiError } from '../utils'
 
 function ThreadBlock ({ thread }: { thread: Thread }) {
 	const navigate = useNavigate()
@@ -46,6 +47,7 @@ function PostBlock({ post }: { post: Post}) {
 
 function HomePage() {
 	const api = useContext(ApiContext)
+	const setError = useContext(ErrorContext)
 
 	const [forumStats, setForumStats] = useState<ForumStats>({
 		latestThreads: [],
@@ -58,9 +60,9 @@ function HomePage() {
 	const [posts, setPosts] = useState<Post[]>([])
 
 	useEffect(() => {
-		api.getForumStats().then(s => setForumStats(s))
-		api.getThreadFeed(1).then(s => setThreads(s))
-		api.getPostFeed(1).then(s => setPosts(s))
+		api.getForumStats().then(s => setForumStats(s)).catch(handleApiError(setError))
+		api.getThreadFeed(1).then(s => setThreads(s)).catch(handleApiError(setError))
+		api.getPostFeed(1).then(s => setPosts(s)).catch(handleApiError(setError))
 	}, [api])
 
 	return (

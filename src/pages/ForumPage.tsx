@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react'
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
-import { ApiContext } from '../ApiContext'
+import { ApiContext, ErrorContext } from '../ApiContext'
 import { Forum, Thread } from '../types'
 import Pager from '../components/Pager'
 import './ForumPage.css'
-import { pageFromSearchParams } from '../utils'
+import { handleApiError, pageFromSearchParams } from '../utils'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -42,6 +42,7 @@ function ThreadPage() {
 	const { forum } = useParams()
 	const [searchParams, setSearchParams] = useSearchParams()
 	const api = useContext(ApiContext)
+	const setError = useContext(ErrorContext)
 
 	const [currentForum, setCurrentForum] = useState<Forum | undefined>(undefined)
 	const [threads, setThreads] = useState<Thread[] | undefined>(undefined)
@@ -50,7 +51,7 @@ function ThreadPage() {
 
 	useEffect(() => {
 		if (forum) {
-			api.getForum(forum).then(res => setCurrentForum(res))
+			api.getForum(forum).then(res => setCurrentForum(res)).catch(handleApiError(setError))
 		}
 		else {
 			setCurrentForum(undefined)
@@ -59,7 +60,7 @@ function ThreadPage() {
 
 	useEffect(() => {
 		if (forum) {
-			api.getThreads(forum, page).then(res => setThreads(res))
+			api.getThreads(forum, page).then(res => setThreads(res)).catch(handleApiError(setError))
 		}
 		else {
 			setCurrentForum(undefined)

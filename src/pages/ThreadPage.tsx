@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { ApiContext } from '../ApiContext'
+import { ApiContext, ErrorContext } from '../ApiContext'
 import { Post, Thread } from '../types'
 import Pager from '../components/Pager'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import './ThreadPage.css'
-import { pageFromSearchParams } from '../utils'
+import { handleApiError, pageFromSearchParams } from '../utils'
 import { Link } from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import RichTextDisplay from '../components/RichTextDisplay'
@@ -33,6 +33,7 @@ function ThreadPage() {
 	const { thread, forum } = useParams()
 	const [searchParams, setSearchParams] = useSearchParams()
 	const api = useContext(ApiContext)
+	const setError = useContext(ErrorContext)
 
 	const [currentThread, setCurrentThread] = useState<Thread | undefined>(undefined)
 	const [currentReplies, setCurrentReplies] = useState<Post[] | undefined>(undefined)
@@ -41,7 +42,7 @@ function ThreadPage() {
 
 	useEffect(() => {
 		if (forum && thread) {
-			api.getThread(forum, thread).then(res => setCurrentThread(res))
+			api.getThread(forum, thread).then(res => setCurrentThread(res)).catch(handleApiError(setError))
 		}
 		else {
 			setCurrentThread(undefined)
@@ -50,7 +51,7 @@ function ThreadPage() {
 
 	useEffect(() => {
 		if (forum && thread) {
-			api.getPosts(forum, thread, page).then(res => setCurrentReplies(res))
+			api.getPosts(forum, thread, page).then(res => setCurrentReplies(res)).catch(handleApiError(setError))
 		}
 		else {
 			setCurrentThread(undefined)

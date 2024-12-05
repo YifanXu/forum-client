@@ -142,6 +142,40 @@ export default class ApiClient {
 					}
 				},
 				icon: "vaqwtjn5wytcresydksu"
+			},
+			{
+				id: 2,
+				threadCount: 10231,
+				name: 'All about cooking again',
+				description: 'Cooking related content',
+				lastUpdatedThread: {
+					id: 15,
+					title: 'Interested in cooking',
+					postCount: 2,
+					initialPost: {
+						id: 1,
+						author: {
+							id: 10,
+							name: "user1",
+							flair: "I'm cool",
+							profilePic: "vaqwtjn5wytcresydksu"
+						},
+						time: 1733282608686,
+						content: "Comon "
+					},
+					lastPost: {
+						id: 1,
+						author: {
+							id: 10,
+							name: "user1",
+							flair: "I'm cool",
+							profilePic: "vaqwtjn5wytcresydksu"
+						},
+						time: 1733282608686,
+						content: "Test Title"
+					}
+				},
+				icon: "vaqwtjn5wytcresydksu"
 			}
 		]
 	}
@@ -286,7 +320,7 @@ export default class ApiClient {
 					id: 10,
 					name: "user1",
 					flair: "I'm cool",
-					profilePic: "vaqwtjn5wytcresydksu"
+					profilePic: ""
 				},
 				time: 12,
 				content: "Test Title"
@@ -367,6 +401,7 @@ export default class ApiClient {
 
 	// create a new thread in a specified forum
 	async createThread(forumId: number, title: string, content: string): Promise<Thread> {
+		console.log('newthread', forumId, title, content)
 		return {
 			id: 15,
 			title: 'Interested in cooking',

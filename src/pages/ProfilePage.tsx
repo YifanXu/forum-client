@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext, useCallback } from 'react'
 import { useParams } from "react-router-dom"
-import { ApiContext, SessionContext } from "../ApiContext"
+import { ApiContext, ErrorContext, SessionContext } from "../ApiContext"
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import ListGroup from 'react-bootstrap/ListGroup'
@@ -13,6 +13,7 @@ import Button from 'react-bootstrap/Button'
 import ProfilePic from '../components/ProfilePic'
 import UploadWidget from '../components/UploadWidget'
 import EditButton from '../components/EditButton'
+import { handleApiError } from '../utils'
 
 function PostBlock({ post }: { post: Post }) {
 	return (
@@ -39,14 +40,15 @@ function ProfilePage() {
 	const [modalOpen, setModalOpen] = useState(false)
 	const [editText, setEditText] = useState('')
 	const api = useContext(ApiContext)
+	const setError = useContext(ErrorContext)
 	const session = useContext(SessionContext)
 
 	const editable = session?.user.id === user.id
 
 	useEffect(() => {
 		if (userid) {
-			api.getUser(userid).then(user => setUser(user))
-			api.getUserPosts(userid).then(res => setPosts(res))
+			api.getUser(userid).then(user => setUser(user)).catch(handleApiError(setError))
+			api.getUserPosts(userid).then(res => setPosts(res)).catch(handleApiError(setError))
 		}
 	}, [api, userid])
 
@@ -55,10 +57,15 @@ function ProfilePage() {
 			...user,
 			flair: editText
 		}
-		await api.updateUser(newUser)
-		setEditText('')
-		setModalOpen(false)
-		setUser(newUser)
+		try {
+			await api.updateUser(newUser)
+			setEditText('')
+			setModalOpen(false)
+			setUser(newUser)
+		}
+		catch (e) {
+			handleApiError(setError)(e)
+		}
 	}, [api, user, editText])
 
 	const handleProfileUpload = useCallback(async (publicId: string) => {
@@ -67,16 +74,13 @@ function ProfilePage() {
 			profilePic: publicId
 		}
 		setUser(newUser)
-		await api.updateUser(newUser)
+		await api.updateUser(newUser).catch(handleApiError(setError))
 	}, [api, user])
 
 	return (
 		<div className="ProfilePage">
 			<div className="profileHeader">
 				<div className="headerBand">
-					{/* <div className="headerBandStats">
-						
-					</div> */}
 					<div>
 						<div className="statHeader">Threads Created</div>
 						<div className="statNumber">{user.threadCount}</div>
@@ -98,10 +102,10 @@ function ProfilePage() {
 					editable 
 					? <UploadWidget onUpload={handleProfileUpload}>
 						{(open) => {
-							return <ProfilePic src={user.profilePic} size={150} onClick={open} />
+							return <ProfilePic src={user.profilePic} size={150} borderRadius={5} onClick={open} />
 						}}
 					</UploadWidget>
-					: <ProfilePic src={user.profilePic} size={150}/>
+					: <ProfilePic src={user.profilePic} borderRadius={5} size={150}/>
 				}
 				<h1 className='profileName'>{user.name}</h1>
 			</div>

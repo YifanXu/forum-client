@@ -13,3 +13,11 @@ const formatter = Intl.NumberFormat('en', { notation: 'compact' });
 export function displayNum (number: number): string {
     return formatter.format(number);
 }
+
+export function handleApiError (setError: (err: string) => void): (e:any) => void {
+    return (e: any) => {
+        const error = e as any
+        console.error(error)
+        setError((error.response?.data ?? error.message) as string)
+    }
+}
