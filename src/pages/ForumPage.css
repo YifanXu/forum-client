@@ -1,0 +1,81 @@
+.ForumPage {
+	--bs-body-bg: var(--bs-light);
+}
+
+.forumHeader {
+	border-radius: 5px;
+	background-color: var(--bs-light);
+	padding: 20px;
+	min-height: 5lh;
+	margin-bottom: 2lh;
+}
+
+.forumSubtitle {
+	display: flex;
+	align-items: center;
+
+	& > div:first-child {
+		flex-grow: 1;
+	}
+}
+
+.forumHeaderPlaceholder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.threadEntry {
+	background-color: var(--bs-light);
+}
+
+.thread {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.threadContent {
+	flex: 1;
+	min-width: 0;
+}
+
+.threadPlaceholder
+{
+	align-items: center;
+	justify-content: center;
+	height: 200px;
+}
+
+.threadTitle {
+	margin: 0px;
+}
+
+.threadThumbnail {
+	color: gray;
+	overflow: hidden;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+}
+
+.threadAttribution {
+	font-size: small;
+	color: gray;
+	margin-bottom: 0.5lh;
+}
+
+.threadLastPost {
+	width: 12rem;
+	min-width: 12rem;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex: 0 1 auto;
+}
+
+.threadAuthorImg {
+	width: 50px;
+	height: 50px;
+	flex: 0 1 auto;
+}

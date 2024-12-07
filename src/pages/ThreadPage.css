@@ -1,0 +1,51 @@
+.subtitleLine {
+	margin-bottom: 1lh;
+	display: flex;
+	align-items: center;
+
+	& > div:first-child {
+		flex-grow: 1;
+	}
+}
+
+.post {
+	border-radius: 5px;
+	padding: 10px;
+	margin: 0.5rem 0px;
+	background-color: var(--bs-light);
+	display: flex;
+	flex-direction: row;
+	align-items: start;
+}
+
+.postAuthor {
+	width: 10rem;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.postAuthor > .name {
+	font-size: large;
+	font-weight: bold;
+}
+
+.postAuthor > .flair {
+	color: darkgray;
+}
+
+.postContent {
+	flex-grow: 1;
+	padding: 10px;
+}
+
+.postTime {
+	font-size: small;
+	color: var(--bs-secondary);
+	margin-bottom: 0.5lh;
+}
+
+.pagerWrapper {
+	background-color: var(--bs-primary);
+}

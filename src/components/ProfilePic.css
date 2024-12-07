@@ -1,0 +1,7 @@
+.profilePic.clickable > img {
+	cursor: pointer;
+
+	&:hover {
+		-webkit-filter: brightness(95%);
+	}
+}

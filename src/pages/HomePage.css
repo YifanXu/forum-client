@@ -1,0 +1,54 @@
+.HomePage {
+	--bs-body-bg: var(--bs-light);
+}
+
+.HomePage > * {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1lh;
+}
+
+.threadBlock {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 5px;
+	height: 4.5rem;
+}
+
+.threadBlockMain {
+	flex-grow: 1;
+}
+
+.threadForum, .threadAuthor {
+	font-size: small;
+	color: gray;
+	height: 0.75lh;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+}
+
+.threadTitle {
+	overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+	line-height: 1.3;
+}
+
+.postBlock {
+	display: flex;
+	flex-direction: row;
+}
+
+.postBlock > div > img {
+	margin-right: 10px;
+}
+
+.postBlockThread {
+	font-size: large;
+	text-wrap: nowrap;
+	text-overflow: ellipsis;
+}

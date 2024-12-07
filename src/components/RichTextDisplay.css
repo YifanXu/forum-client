@@ -1,0 +1,21 @@
+.ql-hidden {
+	display: none;
+}
+
+.richTextDisplayRoot > .ql-container > .ql-editor {
+	padding: 0px;
+	
+}
+
+.richTextDisplayRoot.limitLine > .ql-container > .ql-editor {
+	& > *:first-child {
+		text-wrap: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		width: calc(100%);
+	}
+
+	& > p:not(:first-child) {
+		display:none;
+	}
+}

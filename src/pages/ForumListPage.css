@@ -1,0 +1,58 @@
+.forumList > .forumEntry {
+	background-color: var(--bs-light);
+}
+
+.forumBlock {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+}
+
+.forumBlock > .profilePic:first-child {
+	border-radius: 50%;
+	margin: 10px;
+}
+
+.forumMain {
+	margin: 0px 10px;
+	flex-grow: 1;
+}
+
+.forumTitle {
+	font-weight: bold;
+}
+
+.forumDesc {
+	color: darkgray;
+}
+
+.forumThreadCount {
+	font-weight: bold;
+	font-size: larger;
+}
+
+.forumThreadPlaceholder {
+	width: 200px;
+}
+
+.forumLastThread {
+	width: 300px;
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+}
+
+.author {
+	font-size: smaller;
+	color:darkgray;
+	margin-left: 2ch;
+}
+
+.forumLastThread > .profilePic {
+	margin: 10px;
+}
+
+.time {
+	font-size: small;
+}

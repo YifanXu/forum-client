@@ -1,0 +1,17 @@
+.editor {
+	background-color: var(--bs-light);
+	border-radius: 5px;
+}
+
+.newThreadForm {
+	--bs-body-bg: var(--bs-light);
+}
+
+.ql-editor {
+	height: 100%;
+}
+
+.ql-container {
+    font-size: inherit !important;
+	font-family: inherit !important;
+}

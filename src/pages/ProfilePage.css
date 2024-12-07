@@ -1,0 +1,68 @@
+.profileHeader {
+	background-color: var(--bs-light);
+	height: 300px;
+	position: relative;
+	margin-bottom: 1lh;
+	border-radius: 5px;
+}
+
+.profileHeader > div > img {
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+	border-radius: 5px;
+}
+
+.headerBand {
+	height: 4rem;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	padding: 0.5lh 0px 0.5lh 200px;
+	background-color: var(--bs-primary);
+	color: var(--bs-light);
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+
+	& > * {
+		padding: 0px 1rem;
+		& > .statHeader {
+			color: var(--primary-fade);
+			font-weight: bold;
+		}
+	}
+
+	& > *:not(:last-child) {
+		border-right: 1px solid var(--primary-fade);
+	}
+}
+
+.profileName {
+	position: absolute;
+	color: var(--bs-white);
+	left: 216px;
+	bottom: 4rem;
+	margin-bottom: 1rem;
+	padding: 5px;
+	background-color: var(--bs-secondary);
+	border-radius: 5px;
+}
+
+.profieMain > .col {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 1lh;
+}
+
+.flairDiv {
+	display: flex;
+
+	& > div:first-child {
+		flex-grow: 1;
+	}
+}
